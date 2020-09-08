@@ -105,7 +105,7 @@ class QuadTree{
     }
     strokeWeight(4);
     for(let p of this.points){
-      point(p.x,p.y);
+      point(p.position.x,p.position.y);
     }
   }
 }
