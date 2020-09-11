@@ -13,6 +13,8 @@ function draw(){
   background(50);
   if(pointCounter < 1000)
     quadtree.insert({ position: createVector(random(canvasSize),random(canvasSize))});
+  else
+    console.log(quadtree);
   quadtree.show();
   pointCounter++;
 }
