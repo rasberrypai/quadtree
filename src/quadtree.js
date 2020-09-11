@@ -87,38 +87,12 @@ class QuadTree{
     for(let p of this.points)
       if(shape.contains(p.position.x,p.position.y)) arr.push(p);
     if(this.divided){
-      this.northeast.query(shape,fun,arr);
-      this.northwest.query(shape,fun,arr);
-      this.southeast.query(shape,fun,arr);
-      this.southwest.query(shape,fun,arr);
+      this.northeast.query(shape,arr);
+      this.northwest.query(shape,arr);
+      this.southeast.query(shape,arr);
+      this.southwest.query(shape,arr);
     }
     return arr;
-  }
-
-  //apply function to every point in quadtree
-  //function => fun(x) where x is a point
-  applyAll(fun){
-    for(let p of this.points)
-      fun(p);
-    if(this.divided){
-      this.northeast.applyAll(fun);
-      this.northwest.applyAll(fun);
-      this.southeast.applyAll(fun);
-      this.southwest.applyAll(fun);
-    }
-  }
-
-  //return a copy of this
-  copy(q = new QuadTree(this.r,this.cap)){
-      for(let p of this.points)
-        q.insert(p);
-      if(this.divided){
-        this.northeast.copy(q);
-        this.northwest.copy(q);
-        this.southeast.copy(q);
-        this.southwest.copy(q);
-      }
-      return q;
   }
 
   clear(){
@@ -129,23 +103,6 @@ class QuadTree{
       this.southwest = null;
       this.southeast = null;
       this.divided = false;
-    }
-  }
-
-  show(){
-    stroke(255);
-    strokeWeight(1);
-    noFill()
-    rect(this.r.x,this.r.y,this.r.w,this.r.h);
-    if(this.divided){
-      this.northeast.show();
-      this.northwest.show();
-      this.southeast.show();
-      this.southwest.show();
-    }
-    strokeWeight(4);
-    for(let p of this.points){
-      point(p.position.x,p.position.y);
     }
   }
 }
